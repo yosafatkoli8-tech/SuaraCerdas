@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuaraCerdas — Pusat Edukasi Pemilih & Demokrasi Indonesia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon Pendukung -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#071124',
+                            900: '#0B192C',
+                            800: '#132744',
+                            700: '#1E3E62',
+                            600: '#2A5585',
+                        },
+                        crimson: {
+                            600: '#C81E1E',
+                            700: '#9B1C1C',
+                        },
+                        gold: {
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom subtle animations and scrollbar */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .glass-nav {
+            background: rgba(11, 25, 44, 0.92);
+            backdrop-filter: blur(12px);
+        }
+        .tab-active {
+            background-color: #0B192C;
+            color: #FFFFFF;
+            border-color: #EAB308;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-gold-500 selection:text-navy-950">
+
+    <!-- ==================== NAVIGASI UTAMA ==================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-navy-700/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="#beranda" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-crimson-600 to-navy-700 flex items-center justify-center border border-gold-500/40 shadow-lg group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-box-ballot text-gold-400 text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-white font-extrabold text-xl tracking-tight">Suara<span class="text-gold-400">Cerdas</span></span>
+                        <span class="block text-[10px] text-slate-300 uppercase tracking-widest font-medium">Edukasi Pemilih</span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="#demokrasi" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-gold-400 hover:bg-navy-800 transition-colors">Demokrasi & Asas</a>
+                    <a href="#sistem-pemilu" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-gold-400 hover:bg-navy-800 transition-colors">Sistem Pemilu</a>
+                    <a href="#simulasi" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-gold-400 hover:bg-navy-800 transition-colors">Simulasi Mencoblos</a>
+                    <a href="#kuis" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-gold-400 hover:bg-navy-800 transition-colors">Kuis Pemilih</a>
+                    <a href="#glosarium" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-gold-400 hover:bg-navy-800 transition-colors">Glosarium</a>
+                </nav>
+
+                <!-- Tombol CTA Header & Hamburger -->
+                <div class="flex items-center gap-3">
+                    <a href="#kuis" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-sm shadow-md transition-all active:scale-95">
+                        <i class="fa-solid fa-award"></i>
+                        <span>Uji Pemahaman</span>
+                    </a>
+                    <button id="mobile-menu-btn" aria-label="Buka Menu Navigasi" class="lg:hidden p-2.5 rounded-xl text-slate-200 hover:text-white hover:bg-navy-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-b border-navy-700 px-4 pt-2 pb-5 space-y-1">
+            <a href="#demokrasi" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">1. Demokrasi & Asas Pemilu</a>
+            <a href="#sistem-pemilu" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">2. Eksplorasi Sistem Pemilu</a>
+            <a href="#simulasi" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">3. Simulasi & Tata Cara Mencoblos</a>
+            <a href="#kuis" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">4. Kuis Cek Pemahaman</a>
+            <a href="#glosarium" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">5. Glosarium Istilah Pemilu</a>
+        </div>
+    </header>
+
+    <!-- ==================== 1. HERO SECTION ==================== -->
+    <section id="beranda" class="relative pt-28 pb-20 md:pt-36 md:pb-28 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 text-white overflow-hidden">
+        <!-- Dekorasi Latar Belakang -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gold-500 blur-3xl"></div>
+            <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-crimson-600 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Kolom Teks Utama -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-800/90 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-crimson-600 animate-ping"></span>
+                        <span>Gerakan Pemilih Cerdas & Berdaulat</span>
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Satu Suaramu Menentukan <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-amber-300 to-gold-500">Arah Masa Depan</span> Bangsa.
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Demokrasi bukan sekadar datang ke bilik suara, melainkan memahami hak, sistem pemilihan, dan tanggung jawab kita sebagai warga negara. Pelajari panduan lengkap pemilu secara interaktif, netral, dan mudah dipahami di mana saja.
+                    </p>
+
+                    <!-- Tombol CTA -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#demokrasi" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-crimson-600 hover:bg-crimson-700 text-white font-bold text-base shadow-lg shadow-crimson-600/30 flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5">
+                            <span>Mulai Belajar Sekarang</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#kuis" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-base backdrop-blur-sm flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-brain text-gold-400"></i>
+                            <span>Ikuti Kuis Pemilih</span>
+                        </a>
+                    </div>
+
+                    <!-- Statistik Ringkas Edukasi -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-navy-700/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-gold-400">6</p>
+                            <p class="text-xs sm:text-sm text-slate-300">Asas Luber Jurdil</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">4</p>
+                            <p class="text-xs sm:text-sm text-slate-300">Sistem Pemilu Dunia</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-crimson-500">100%</p>
+                            <p class="text-xs sm:text-sm text-slate-300">Netral & Edukatif</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Ilustrasi Interaktif SVG Kotak Suara -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md bg-navy-800/70 border border-navy-700 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md animate-float">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-gold-400 bg-navy-950/60 px-3 py-1 rounded-full">Simbol Kedaulatan Rakyat</span>
+                            <div class="flex gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-crimson-600"></span>
+                                <span class="w-3 h-3 rounded-full bg-gold-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            </div>
+                        </div>
+
+                        <!-- SVG Ilustrasi Kotak Suara & Surat Suara -->
+                        <svg viewBox="0 0 360 280" class="w-full h-auto drop-shadow-lg" role="img" aria-label="Ilustrasi Kotak Suara Demokrasi">
+                            <!-- Latar Lingkaran -->
+                            <circle cx="180" cy="145" r="110" fill="#132744" stroke="#2A5585" stroke-width="2" stroke-dasharray="6 6"/>
+                            <!-- Surat Suara Masuk -->
+                            <g transform="translate(135, 25) rotate(-6)">
+                                <rect x="0" y="0" width="90" height="105" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+                                <rect x="12" y="14" width="66" height="10" rx="3" fill="#0B192C"/>
+                                <rect x="12" y="34" width="24" height="24" rx="4" fill="#FEE2E2" stroke="#C81E1E" stroke-width="2"/>
+                                <!-- Tanda Coblos / Paku -->
+                                <path d="M18 40 L30 52 M30 40 L18 52" stroke="#C81E1E" stroke-width="3" stroke-linecap="round"/>
+                                <rect x="44" y="36" width="34" height="6" rx="2" fill="#94A3B8"/>
+                                <rect x="44" y="48" width="24" height="6" rx="2" fill="#CBD5E1"/>
+                                <rect x="12" y="68" width="24" height="24" rx="4" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5"/>
+                                <rect x="44" y="72" width="34" height="6" rx="2" fill="#CBD5E1"/>
+                            </g>
+                            <!-- Kotak Suara Utama -->
+                            <rect x="75" y="115" width="210" height="135" rx="14" fill="#1E3E62" stroke="#EAB308" stroke-width="2.5"/>
+                            <!-- Tutup Kotak Suara -->
+                            <rect x="65" y="105" width="230" height="22" rx="8" fill="#0B192C" stroke="#EAB308" stroke-width="2"/>
+                            <!-- Celah Surat Suara -->
+                            <rect x="125" y="112" width="110" height="8" rx="4" fill="#071124"/>
+                            <!-- Label Garuda / Demokrasi pada Kotak -->
+                            <rect x="115" y="148" width="130" height="72" rx="10" fill="#0B192C" stroke="#2A5585" stroke-width="1.5"/>
+                            <circle cx="180" cy="174" r="14" fill="#C81E1E"/>
+                            <path d="M174 174 L178 178 L187 169" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="180" y="205" text-anchor="middle" fill="#FACC15" font-size="11" font-weight="bold" font-family="Inter, sans-serif">KOTAK SUARA</text>
+                        </svg>
+
+                        <div class="mt-4 bg-navy-950/70 rounded-2xl p-4 border border-navy-700/70">
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                <strong class="text-gold-400">Tahukah Kamu?</strong> Dalam negara demokrasi, pemilu adalah mekanisme damai paling sah untuk menyalurkan aspirasi rakyat dan mengevaluasi kinerja pemimpin.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 2. PENGETAHUAN DEMOKRASI & ASAS PEMILU ==================== -->
+    <section id="demokrasi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header Bagian -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-bold uppercase tracking-widest text-crimson-600 bg-red-50 px-3.5 py-1.5 rounded-full">Modul 01 • Fondasi Bernegara</span>
+                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-navy-900">Memahami Demokrasi & Asas Pemilu</h2>
+                <p class="mt-3 text-slate-600 text-base sm:text-lg">
+                    Pelajari pilar utama kedaulatan rakyat, prinsip penyelenggaraan pemilu yang berintegritas, serta peran strategis pemilih.
+                </p>
+            </div>
+
+            <!-- Tab Navigasi Interaktif -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10" role="tablist">
+                <button onclick="switchDemokrasiTab('konsep')" id="tab-konsep" class="demokrasi-tab tab-active px-5 py-3 rounded-xl border-2 border-navy-900 font-bold text-sm sm:text-base transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>Konsep Dasar Demokrasi</span>
+                </button>
+                <button onclick="switchDemokrasiTab('asas')" id="tab-asas" class="demokrasi-tab px-5 py-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-700 hover:border-navy-700 font-bold text-sm sm:text-base transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <span>6 Asas Pemilu (Luber Jurdil)</span>
+                </button>
+                <button onclick="switchDemokrasiTab('peran')" id="tab-peran" class="demokrasi-tab px-5 py-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-700 hover:border-navy-700 font-bold text-sm sm:text-base transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-users-rays"></i>
+                    <span>Peran Pemilih Cerdas</span>
+                </button>
+            </div>
+
+            <!-- Konten Tab 1: Konsep Dasar Demokrasi -->
+            <div id="content-konsep" class="demokrasi-panel grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-navy-700 transition-all shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-xl mb-5">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Dari, Oleh, dan Untuk Rakyat</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Berasal dari kata Yunani <em>Demos</em> (rakyat) dan <em>Kratos</em> (kekuasaan). Dalam demokrasi, kekuasaan tertinggi berada di tangan rakyat dan dijalankan melalui wakil-wakil yang dipilih secara berkala.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-navy-700 transition-all shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-crimson-600 text-white flex items-center justify-center text-xl mb-5">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Sirkulasi Kekuasaan Damai</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Pemilu menjamin pergantian kepemimpinan secara konstitusional, damai, dan teratur tanpa kekerasan. Ini mencegah pemusatan kekuasaan absolut pada satu pihak saja.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-navy-700 transition-all shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-gold-500 text-navy-950 flex items-center justify-center text-xl mb-5">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Perlindungan Hak Sipil</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Demokrasi melindungi kebebasan berpendapat, berserikat, serta kesetaraan di hadapan hukum. Setiap warga negara yang memenuhi syarat memiliki bobot suara yang sama (<em>one person, one vote</em>).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Konten Tab 2: Asas Luber Jurdil -->
+            <div id="content-asas" class="demokrasi-panel hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Langsung -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-navy-700 shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-gold-500 text-navy-950 font-extrabold text-xs">ASAS 01</span>
+                        <i class="fa-solid fa-hand-pointer text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Langsung</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Pemilih memberikan suaranya secara langsung sesuai kehendak hati nuraninya, tanpa perantara atau diwakilkan kepada orang lain.
+                    </p>
+                </div>
+
+                <!-- Umum -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-navy-700 shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-gold-500 text-navy-950 font-extrabold text-xs">ASAS 02</span>
+                        <i class="fa-solid fa-globe text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Umum</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Pemilu berlaku menyeluruh bagi semua warga negara yang memenuhi persyaratan usia dan aturan, tanpa diskriminasi suku, agama, ras, gender, maupun status sosial.
+                    </p>
+                </div>
+
+                <!-- Bebas -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-navy-700 shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-gold-500 text-navy-950 font-extrabold text-xs">ASAS 03</span>
+                        <i class="fa-solid fa-dove text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Bebas</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Setiap pemilih bebas menentukan pilihannya tanpa tekanan, paksaan, intimidasi, maupun iming-iming politik uang dari pihak manapun.
+                    </p>
+                </div>
+
+                <!-- Rahasia -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-navy-700 shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-crimson-600 text-white font-extrabold text-xs">ASAS 04</span>
+                        <i class="fa-solid fa-user-secret text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Rahasia</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Pilihan pemilih dijamin tidak akan diketahui oleh pihak manapun dan dengan jalan apapun. Bilik suara dirancang untuk menjaga kerahasiaan mutlak.
+                    </p>
+                </div>
+
+                <!-- Jujur -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-navy-700 shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-crimson-600 text-white font-extrabold text-xs">ASAS 05</span>
+                        <i class="fa-solid fa-circle-check text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Jujur</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Penyelenggara pemilu, peserta pemilu, pengawas, pemantau, dan pemilih wajib bersikap dan bertindak jujur sesuai peraturan perundang-undangan.
+                    </p>
+                </div>
+
+                <!-- Adil -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-navy-700 shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-lg bg-crimson-600 text-white font-extrabold text-xs">ASAS 06</span>
+                        <i class="fa-solid fa-scale-unbalanced-flip text-gold-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Adil</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Setiap pemilih dan peserta pemilu mendapatkan perlakuan yang sama serta bebas dari kecurangan pihak manapun dalam seluruh tahapan pemilu.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Konten Tab 3: Peran Pemilih Cerdas -->
+            <div id="content-peran" class="demokrasi-panel hidden bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-extrabold text-navy-900">Mengapa Pemilih Tidak Boleh Apatis?</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Keputusan politik—mulai dari harga bahan pokok, anggaran pendidikan, layanan kesehatan, hingga kelestarian lingkungan—ditentukan oleh para pemimpin yang dipilih melalui pemilu.
+                        </p>
+                        <ul class="space-y-3 pt-2">
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span class="text-sm text-slate-700"><strong>Cek Rekam Jejak:</strong> Pelajari visi, misi, program kerja, dan integritas calon sebelum hari pemungutan suara.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span class="text-sm text-slate-700"><strong>Tolak Politik Uang (Money Politics):</strong> Suara yang dibeli akan mengorbankan kualitas kebijakan publik selama 5 tahun ke depan.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span class="text-sm text-slate-700"><strong>Lawan Hoaks & Ujaran Kebencian:</strong> Saring informasi pemilu hanya dari kanal resmi penyelenggara dan media terverifikasi.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fa-solid fa-check text-xs"></i></span>
+                                <span class="text-sm text-slate-700"><strong>Ikut Mengawal Suara:</strong> Pantau proses penghitungan suara di TPS dan laporkan jika menemukan pelanggaran.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-navy-900 text-white rounded-2xl p-6 sm:p-8 border border-navy-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-gold-400">3 Siklus Partisipasi Pemilih</h4>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-navy-800 border-l-4 border-gold-500">
+                                <p class="font-bold text-sm">1. Pra-Pemilu</p>
+                                <p class="text-xs text-slate-300 mt-1">Memastikan nama terdaftar di Daftar Pemilih Tetap (DPT) dan meriset profil kandidat.</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-navy-800 border-l-4 border-crimson-600">
+                                <p class="font-bold text-sm">2. Hari-H Pemungutan Suara</p>
+                                <p class="text-xs text-slate-300 mt-1">Datang ke TPS tepat waktu, mencoblos secara sah, dan menyaksikan penghitungan suara.</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-navy-800 border-l-4 border-emerald-500">
+                                <p class="font-bold text-sm">3. Pasca-Pemilu</p>
+                                <p class="text-xs text-slate-300 mt-1">Mengawasi realisasi janji kampanye wakil rakyat dan kepala daerah yang terpilih.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. EKSPLORASI SISTEM PEMILU ==================== -->
+    <section id="sistem-pemilu" class="py-20 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-navy-800 bg-gold-400/30 px-3.5 py-1.5 rounded-full">Modul 02 • Arsitektur Perwakilan</span>
+                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-navy-900">Eksplorasi & Perbandingan Sistem Pemilu</h2>
+                <p class="mt-3 text-slate-600 text-base sm:text-lg">
+                    Bagaimana suara pemilih dikonversi menjadi kursi di parlemen? Pilih salah satu sistem di bawah untuk melihat mekanisme, contoh penerapan, kelebihan, dan kekurangannya.
+                </p>
+            </div>
+
+            <!-- Pemilih Sistem Pemilu Interaktif -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Sidebar Tombol Pilihan Sistem -->
+                <div class="lg:col-span-4 space-y-3">
+                    <button onclick="selectElectoralSystem('proporsional-terbuka')" id="sys-btn-proporsional-terbuka" class="sys-btn w-full text-left p-5 rounded-2xl bg-navy-900 text-white border-2 border-gold-500 shadow-md transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Digunakan di Indonesia (DPR/DPRD)</span>
+                            <i class="fa-solid fa-chevron-right text-gold-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mt-1">Proporsional Daftar Terbuka</h3>
+                        <p class="text-xs text-slate-300 mt-1">Pemilih dapat mencoblos tanda gambar partai atau langsung nama calon legislatif.</p>
+                    </button>
+
+                    <button onclick="selectElectoralSystem('proporsional-tertutup')" id="sys-btn-proporsional-tertutup" class="sys-btn w-full text-left p-5 rounded-2xl bg-white text-navy-900 border-2 border-slate-200 hover:border-navy-700 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Berbasis Partai Politik</span>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mt-1">Proporsional Daftar Tertutup</h3>
+                        <p class="text-xs text-slate-500 mt-1">Pemilih hanya memilih partai politik; urutan calon terpilih ditentukan partai.</p>
+                    </button>
+
+                    <button onclick="selectElectoralSystem('distrik')" id="sys-btn-distrik" class="sys-btn w-full text-left p-5 rounded-2xl bg-white text-navy-900 border-2 border-slate-200 hover:border-navy-700 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Winner-Takes-All</span>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mt-1">Sistem Distrik / Mayoritas</h3>
+                        <p class="text-xs text-slate-500 mt-1">Satu daerah pemilihan memperebutkan 1 kursi; peraih suara terbanyak menang mutlak.</p>
+                    </button>
+
+                    <button onclick="selectElectoralSystem('campuran')" id="sys-btn-campuran" class="sys-btn w-full text-left p-5 rounded-2xl bg-white text-navy-900 border-2 border-slate-200 hover:border-navy-700 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Hibrida (Mixed Member)</span>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mt-1">Sistem Pemilu Campuran</h3>
+                        <p class="text-xs text-slate-500 mt-1">Menggabungkan keunggulan sistem distrik dan sistem proporsional secara bersamaan.</p>
+                    </button>
+                </div>
+
+                <!-- Panel Detail Sistem Pemilu -->
+                <div class="lg:col-span-8">
+                    <div id="system-detail-card" class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-lg h-full flex flex-col justify-between">
+                        <!-- Konten diisi secara dinamis oleh JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. SIMULASI & TATA CARA MENCOBLOS ==================== -->
+    <section id="simulasi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-bold uppercase tracking-widest text-crimson-600 bg-red-50 px-3.5 py-1.5 rounded-full">Modul 03 • Panduan Praktis TPS</span>
+                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-navy-900">Tata Cara & Simulasi Mencoblos</h2>
+                <p class="mt-3 text-slate-600 text-base sm:text-lg">
+                    Khusus pemilih pemula maupun umum: ikuti 5 langkah di TPS dan uji langsung pemahamanmu tentang <strong>Surat Suara Sah vs Tidak Sah</strong> pada simulator interaktif di bawah!
+                </p>
+            </div>
+
+            <!-- 5 Langkah di TPS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative">
+                    <span class="w-8 h-8 rounded-lg bg-navy-900 text-gold-400 font-bold text-sm flex items-center justify-center mb-3">1</span>
+                    <h3 class="font-bold text-navy-900 text-base mb-1">Cek DPT & Undangan</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Pastikan terdaftar di DPT secara daring. Bawa KTP-el dan formulir pemberitahuan (Model C6) ke TPS pukul 07.00–13.00.</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative">
+                    <span class="w-8 h-8 rounded-lg bg-navy-900 text-gold-400 font-bold text-sm flex items-center justify-center mb-3">2</span>
+                    <h3 class="font-bold text-navy-900 text-base mb-1">Registrasi & Tunggu</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Serahkan KTP-el & formulir kepada petugas KPPS di meja pendaftaran, lalu duduk menunggu nama dipanggil.</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative">
+                    <span class="w-8 h-8 rounded-lg bg-navy-900 text-gold-400 font-bold text-sm flex items-center justify-center mb-3">3</span>
+                    <h3 class="font-bold text-navy-900 text-base mb-1">Periksa Surat Suara</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Terima surat suara yang sudah ditandatangani Ketua KPPS. Buka lebar dan pastikan tidak rusak atau tercoblos.</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative">
+                    <span class="w-8 h-8 rounded-lg bg-crimson-600 text-white font-bold text-sm flex items-center justify-center mb-3">4</span>
+                    <h3 class="font-bold text-navy-900 text-base mb-1">Coblos di Bilik Suara</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Masuk bilik suara, coblos menggunakan paku yang disediakan (bukan pulpen/rokok), lalu lipat kembali seperti semula.</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white font-bold text-sm flex items-center justify-center mb-3">5</span>
+                    <h3 class="font-bold text-navy-900 text-base mb-1">Kotak Suara & Tinta</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Masukkan surat suara ke kotak sesuai jenisnya, lalu celupkan salah satu jari ke tinta ungu sebagai bukti telah memilih.</p>
+                </div>
+            </div>
+
+            <!-- Simulator Interaktif Surat Suara -->
+            <div class="bg-navy-950 rounded-3xl p-6 sm:p-10 text-white shadow-2xl border border-navy-800">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Penjelasan Simulator -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-bold">
+                            <i class="fa-solid fa-hand-sparkles"></i>
+                            <span>SIMULATOR SURAT SUARA INTERAKTIF</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold">Uji Coba Mencoblos Surat Suara!</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Klik pada area di surat suara simulasi di samping (logo partai, nomor urut, nama calon, atau di luar kolom) untuk melihat apakah coblosanmu dinyatakan <span class="text-emerald-400 font-bold">SAH</span> atau <span class="text-crimson-500 font-bold">TIDAK SAH</span> menurut aturan pemilu.
+                        </p>
+
+                        <!-- Kotak Hasil Feedback Simulator -->
+                        <div id="ballot-feedback" class="p-5 rounded-2xl bg-navy-900 border border-navy-700 transition-all">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-navy-800 flex items-center justify-center text-gold-400">
+                                    <i class="fa-solid fa-computer-mouse"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm text-white">Siap Mencoblos?</p>
+                                    <p class="text-xs text-slate-400">Klik area mana saja pada surat suara contoh untuk melihat status keabsahan suara.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <button onclick="resetBallotSimulator()" class="px-4 py-2 rounded-xl bg-navy-800 hover:bg-navy-700 text-xs font-semibold text-slate-200 border border-navy-600 transition-colors">
+                                <i class="fa-solid fa-rotate-left mr-1"></i> Ganti Surat Suara Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Visual Surat Suara Interaktif -->
+                    <div class="lg:col-span-7">
+                        <div class="bg-slate-200 text-navy-950 rounded-2xl p-4 sm:p-6 shadow-inner border-4 border-slate-300 relative select-none">
+                            <!-- Header Surat Suara -->
+                            <div class="bg-navy-900 text-white rounded-xl p-3 mb-4 flex items-center justify-between">
+                                <div>
+                                    <p class="text-[10px] uppercase tracking-widest text-gold-400 font-bold">Contoh Surat Suara Pemilihan Umum</p>
+                                    <p class="font-extrabold text-sm sm:text-base">DEWAN PERWAKILAN RAKYAT (DPR)</p>
+                                </div>
+                                <span class="px-2.5 py-1 rounded bg-crimson-600 text-[10px] font-bold">SIMULASI</span>
+                            </div>
+
+                            <!-- Area Luar Kolom (Tidak Sah) -->
+                            <div onclick="handleBallotClick('outside', event)" class="p-3 rounded-xl border-2 border-dashed border-slate-400 hover:bg-red-100/60 cursor-crosshair transition-colors relative">
+                                <p class="text-[11px] text-center text-slate-500 font-medium mb-3">Area Putih di Luar Kolom Partai (Klik di sini untuk uji coblosan di luar kotak)</p>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <!-- Kolom Partai 1 -->
+                                    <div class="bg-white rounded-xl border-2 border-navy-900 overflow-hidden shadow-sm">
+                                        <!-- Header Partai -->
+                                        <div onclick="handleBallotClick('party1', event)" class="p-3 bg-slate-100 border-b-2 border-navy-900 flex items-center gap-3 hover:bg-amber-50 cursor-crosshair">
+                                            <span class="w-8 h-8 rounded-lg bg-navy-900 text-white font-extrabold flex items-center justify-center text-sm">1</span>
+                                            <div class="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center">
+                                                <i class="fa-solid fa-feather-pointed"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-extrabold text-xs text-navy-900">PARTAI HARAPAN BANGSA</p>
+                                                <p class="text-[10px] text-slate-500">Klik logo/nomor partai</p>
+                                            </div>
+                                        </div>
+                                        <!-- Daftar Calon -->
+                                        <div class="divide-y divide-slate-200 text-xs">
+                                            <div onclick="handleBallotClick('caleg1', event)" class="p-2.5 flex items-center gap-2.5 hover:bg-amber-50 cursor-crosshair">
+                                                <span class="font-bold text-navy-900 w-4">1.</span>
+                                                <span class="font-semibold">Alya Paramita, S.H.</span>
+                                            </div>
+                                            <div onclick="handleBallotClick('caleg2', event)" class="p-2.5 flex items-center gap-2.5 hover:bg-amber-50 cursor-crosshair">
+                                                <span class="font-bold text-navy-900 w-4">2.</span>
+                                                <span class="font-semibold">Budi Santoso, M.Si.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kolom Partai 2 -->
+                                    <div class="bg-white rounded-xl border-2 border-navy-900 overflow-hidden shadow-sm">
+                                        <!-- Header Partai -->
+                                        <div onclick="handleBallotClick('party2', event)" class="p-3 bg-slate-100 border-b-2 border-navy-900 flex items-center gap-3 hover:bg-amber-50 cursor-crosshair">
+                                            <span class="w-8 h-8 rounded-lg bg-crimson-600 text-white font-extrabold flex items-center justify-center text-sm">2</span>
+                                            <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+                                                <i class="fa-solid fa-seedling"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-extrabold text-xs text-navy-900">PARTAI KARYA NUSANTARA</p>
+                                                <p class="text-[10px] text-slate-500">Klik logo/nomor partai</p>
+                                            </div>
+                                        </div>
+                                        <!-- Daftar Calon -->
+                                        <div class="divide-y divide-slate-200 text-xs">
+                                            <div onclick="handleBallotClick('caleg3', event)" class="p-2.5 flex items-center gap-2.5 hover:bg-amber-50 cursor-crosshair">
+                                                <span class="font-bold text-navy-900 w-4">1.</span>
+                                                <span class="font-semibold">Citra Lestari, S.E.</span>
+                                            </div>
+                                            <div onclick="handleBallotClick('caleg4', event)" class="p-2.5 flex items-center gap-2.5 hover:bg-amber-50 cursor-crosshair">
+                                                <span class="font-bold text-navy-900 w-4">2.</span>
+                                                <span class="font-semibold">Dimas Prakoso, S.T.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tombol Simulasi Kasus Khusus -->
+                                <div class="mt-4 pt-3 border-t border-slate-300 flex flex-wrap gap-2 justify-center">
+                                    <button onclick="handleBallotClick('double_same_party', event)" class="px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-[11px] font-semibold">
+                                        Simulasi: Coblos Partai + 1 Caleg Se-Partai
+                                    </button>
+                                    <button onclick="handleBallotClick('double_diff_party', event)" class="px-3 py-1.5 rounded-lg bg-crimson-600 hover:bg-crimson-700 text-white text-[11px] font-semibold">
+                                        Simulasi: Coblos 2 Partai Berbeda
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. KUIS INTERAKTIF "CEK PEMAHAMAN PEMILIH" ==================== -->
+    <section id="kuis" class="py-20 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-navy-900 bg-gold-400/40 px-3.5 py-1.5 rounded-full">Modul 04 • Evaluasi Mandiri</span>
+                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-navy-900">Kuis: Cek Pemahaman Pemilih</h2>
+                <p class="mt-3 text-slate-600 text-base">
+                    Jawab 6 pertanyaan singkat seputar demokrasi dan pemilu untuk mengukur kesiapanmu dan raih <strong>Lencana Pemilih Cerdas</strong>!
+                </p>
+            </div>
+
+            <!-- Kontainer Utama Kuis -->
+            <div id="quiz-container" class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200">
+                <!-- Progress Bar Kuis -->
+                <div id="quiz-header" class="mb-8">
+                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-500 mb-2">
+                        <span id="quiz-progress-text">Pertanyaan 1 dari 6</span>
+                        <span id="quiz-score-badge" class="text-navy-900 bg-slate-100 px-3 py-1 rounded-full">Skor: 0</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-navy-900 to-crimson-600 transition-all duration-300" style="width: 16.66%"></div>
+                    </div>
+                </div>
+
+                <!-- Area Soal & Pilihan -->
+                <div id="quiz-body">
+                    <h3 id="quiz-question" class="text-lg sm:text-2xl font-bold text-navy-900 mb-6 leading-snug">
+                        Memuat pertanyaan...
+                    </h3>
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- Opsi jawaban diisi oleh JavaScript -->
+                    </div>
+
+                    <!-- Kotak Pembahasan Jawaban -->
+                    <div id="quiz-explanation" class="hidden mt-6 p-5 rounded-2xl border text-sm leading-relaxed">
+                        <!-- Penjelasan muncul setelah menjawab -->
+                    </div>
+
+                    <!-- Tombol Lanjut -->
+                    <div class="mt-8 flex justify-end">
+                        <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-3 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-bold text-sm items-center gap-2 transition-all">
+                            <span>Pertanyaan Berikutnya</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Layar Hasil & Sertifikat Digital -->
+                <div id="quiz-result" class="hidden text-center space-y-6">
+                    <!-- Kartu Lencana Digital -->
+                    <div class="max-w-lg mx-auto bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 text-white rounded-3xl p-6 sm:p-8 border-2 border-gold-500 shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-gold-500/10"></div>
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 flex items-center justify-center text-3xl shadow-lg mb-4">
+                            <i id="badge-icon" class="fa-solid fa-award"></i>
+                        </div>
+                        <p class="text-xs uppercase tracking-widest text-gold-400 font-bold">Lencana Edukasi Demokrasi</p>
+                        <h3 id="badge-title" class="text-2xl sm:text-3xl font-extrabold mt-1">Duta Pemilih Cerdas</h3>
+                        <p id="badge-subtitle" class="text-slate-300 text-sm mt-2">
+                            Selamat! Kamu telah menyelesaikan evaluasi pengetahuan pemilu dengan hasil memuaskan.
+                        </p>
+                        <div class="mt-6 pt-5 border-t border-navy-700 flex items-center justify-between text-xs text-slate-300">
+                            <span>Skor Akhir: <strong id="final-score-text" class="text-gold-400 text-base">6/6</strong></span>
+                            <span>Portal SuaraCerdas</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                        <button onclick="restartQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-bold text-sm transition-all">
+                            <i class="fa-solid fa-rotate-right mr-2"></i>Ulangi Kuis
+                        </button>
+                        <button onclick="copyCertificateText()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-sm transition-all">
+                            <i class="fa-solid fa-share-nodes mr-2"></i>Salin Capaian Lencana
+                        </button>
+                    </div>
+                    <p id="copy-status" class="text-xs text-emerald-600 font-semibold hidden">Teks capaian berhasil disalin ke papan klip!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. GLOSARIUM PEMILU ==================== -->
+    <section id="glosarium" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-crimson-600 bg-red-50 px-3.5 py-1.5 rounded-full">Modul 05 • Kamus Kepemiluan</span>
+                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-navy-900">Glosarium Istilah Pemilu</h2>
+                <p class="mt-3 text-slate-600 text-base">
+                    Cari arti istilah penting seputar kepemiluan agar kamu tidak bingung saat mengikuti berita atau tahapan pemilu.
+                </p>
+            </div>
+
+            <!-- Kolom Pencarian & Filter Kategori -->
+            <div class="max-w-3xl mx-auto mb-10 space-y-4">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="glossary-search" oninput="filterGlossary()" placeholder="Ketik istilah pemilu (misal: DPT, TPS, Ambang Batas, Masa Tenang, KPPS)..." class="w-full pl-11 pr-4 py-4 rounded-2xl border-2 border-slate-200 focus:border-navy-900 focus:outline-none text-sm sm:text-base bg-slate-50 focus:bg-white transition-all">
+                </div>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button onclick="setGlossaryCategory('Semua')" class="gloss-cat-btn px-3.5 py-1.5 rounded-lg bg-navy-900 text-white text-xs font-bold">Semua Istilah</button>
+                    <button onclick="setGlossaryCategory('Pemilih & TPS')" class="gloss-cat-btn px-3.5 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold">Pemilih & TPS</button>
+                    <button onclick="setGlossaryCategory('Sistem & Aturan')" class="gloss-cat-btn px-3.5 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold">Sistem & Aturan</button>
+                    <button onclick="setGlossaryCategory('Lembaga & Tahapan')" class="gloss-cat-btn px-3.5 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold">Lembaga & Tahapan</button>
+                </div>
+            </div>
+
+            <!-- Daftar Kartu Glosarium -->
+            <div id="glossary-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Item Glosarium dirender melalui JavaScript -->
+            </div>
+            <div id="glossary-empty" class="hidden text-center py-12">
+                <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
+                <p class="text-slate-500 font-medium">Istilah yang kamu cari tidak ditemukan. Coba kata kunci lain.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-navy-950 text-slate-300 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-navy-800">
+                <div>
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-crimson-600 flex items-center justify-center text-gold-400">
+                            <i class="fa-solid fa-box-ballot text-sm"></i>
+                        </div>
+                        <span class="text-white font-extrabold text-lg">Suara<span class="text-gold-400">Cerdas</span></span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        Platform pendidikan pemilih independen, netral, dan non-partisan yang bertujuan meningkatkan literasi demokrasi masyarakat di seluruh Indonesia.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Navigasi Materi</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+                        <li><a href="#demokrasi" class="hover:text-gold-400 transition-colors">Konsep Demokrasi & Luber Jurdil</a></li>
+                        <li><a href="#sistem-pemilu" class="hover:text-gold-400 transition-colors">Perbandingan Sistem Pemilu</a></li>
+                        <li><a href="#simulasi" class="hover:text-gold-400 transition-colors">Simulasi Surat Suara TPS</a></li>
+                        <li><a href="#kuis" class="hover:text-gold-400 transition-colors">Kuis Pemahaman Pemilih</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Komitmen Netralitas</h4>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        Seluruh ilustrasi nama partai, kandidat, dan nomor urut dalam simulasi ini bersifat fiktif semata untuk keperluan edukasi tata cara pemungutan suara.
+                    </p>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 SuaraCerdas — Edukasi Pemilih & Demokrasi. Hak Cipta Dilindungi.</p>
+                <p class="text-slate-400">Jadilah Pemilih Berdaulat: <strong>Cerdas Memilih, Kawal Demokrasi.</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== LOGIKA JAVASCRIPT INTERAKTIF ==================== -->
+    <script>
+        // 1. Navigasi Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Tab Interaktif Pengetahuan Demokrasi
+        function switchDemokrasiTab(tabName) {
+            // Sembunyikan semua panel
+            document.querySelectorAll('.demokrasi-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            // Reset style semua tombol tab
+            document.querySelectorAll('.demokrasi-tab').forEach(btn => {
+                btn.classList.remove('tab-active', 'border-navy-900');
+                btn.classList.add('bg-slate-50', 'text-slate-700', 'border-slate-200');
+            });
+
+            // Tampilkan panel aktif
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.remove('bg-slate-50', 'text-slate-700', 'border-slate-200');
+            activeBtn.classList.add('tab-active', 'border-navy-900');
+        }
+
+        // 3. Data & Logika Eksplorasi Sistem Pemilu
+        const electoralSystemsData = {
+            'proporsional-terbuka': {
+                badge: 'Sistem di Indonesia (Pemilu Legislatif)',
+                title: 'Sistem Proporsional Daftar Terbuka',
+                summary: 'Kursi di daerah pemilihan (Dapil) dibagikan kepada partai politik sesuai dengan proporsi perolehan suara sah. Pemilih dapat langsung mencoblos tanda gambar partai atau nama calon anggota legislatif (Caleg) yang disukai. Calon dengan suara terbanyak di partai tersebut berhak menduduki kursi yang diraih partainya.',
+                examples: 'Indonesia (sejak 2009), Brasil, Finlandia, Swedia, Swiss.',
+                pros: [
+                    'Pemilih mengenal langsung wakil yang dipilihnya sehingga hubungan akuntabilitas lebih dekat.',
+                    'Mendorong kandidat untuk aktif turun menyerap aspirasi masyarakat secara langsung.',
+                    'Proporsi kursi parlemen mencerminkan perolehan suara partai secara adil.'
+                ],
+                cons: [
+                    'Persaingan antar-caleg dalam satu partai bisa sangat ketat dan berbiaya politik tinggi.',
+                    'Surat suara cenderung berukuran besar karena memuat seluruh daftar nama calon.'
+                ]
+            },
+            'proporsional-tertutup': {
+                badge: 'Sistem Berbasis Kelembagaan Partai',
+                title: 'Sistem Proporsional Daftar Tertutup',
+                summary: 'Pemilih hanya mencoblos tanda gambar atau nomor urut partai politik pada surat suara. Partai politik telah menyusun nomor urut kandidat sebelumnya. Jika partai mendapat 2 kursi, maka kandidat nomor urut 1 dan 2 otomatis terpilih.',
+                examples: 'Afrika Selatan, Spanyol, Portugal, Israel, Indonesia (Era Orde Baru & Pemilu 1999).',
+                pros: [
+                    'Memperkuat disiplin, ideologi, dan kaderisasi internal partai politik.',
+                    'Menekan biaya kampanye individual kandidat dan mengurangi potensi politik uang antar-caleg.',
+                    'Memudahkan partai menempatkan kader ahli atau keterwakilan perempuan di nomor urut atas.'
+                ],
+                cons: [
+                    'Pemilih tidak bisa menentukan figur calon secara langsung (ibarat membeli kucing dalam karung).',
+                    'Potensi oligarki elite partai dalam menentukan nomor urut kandidat.'
+                ]
+            },
+            'distrik': {
+                badge: 'Sistem Mayoritas / Pluralitas (First-Past-The-Post)',
+                title: 'Sistem Distrik (Single-Member Constituency)',
+                summary: 'Wilayah negara dibagi menjadi banyak distrik pemilihan kecil, di mana setiap distrik hanya memperebutkan 1 kursi. Kandidat yang meraih suara terbanyak di distrik tersebut langsung menang, sementara suara kandidat yang kalah tidak diperhitungkan lagi.',
+                examples: 'Inggris, Amerika Serikat, India, Malaysia, Kanada.',
+                pros: [
+                    'Sangat sederhana, penghitungan suara cepat, dan pemilih sangat mengenal wakil distriknya.',
+                    'Mendorong penyederhanaan partai politik dan stabilitas pemerintahan.',
+                    'Wakil terpilih memiliki ikatan kuat dengan konstituen di wilayah distriknya.'
+                ],
+                cons: [
+                    'Banyak suara pemilih yang terbuang (wasted votes) jika calonnya kalah tipis di distrik.',
+                    'Kurang representatif bagi partai kecil atau kelompok minoritas secara nasional.'
+                ]
+            },
+            'campuran': {
+                badge: 'Kombinasi Distrik & Proporsional',
+                title: 'Sistem Pemilu Campuran (Mixed-Member)',
+                summary: 'Pemilih biasanya memiliki dua suara: satu suara untuk memilih wakil langsung di distrik lokal, dan satu suara lagi untuk memilih partai politik secara proporsional guna menyeimbangkan komposisi parlemen nasional.',
+                examples: 'Jerman, Selandia Baru, Jepang, Korea Selatan.',
+                pros: [
+                    'Menggabungkan kedekatan wakil distrik dengan keadilan keterwakilan proporsional.',
+                    'Meminimalkan suara yang terbuang sekaligus menjaga akuntabilitas individu kandidat.'
+                ],
+                cons: [
+                    'Formula konversi suara menjadi kursi cukup kompleks untuk dipahami pemilih awam.',
+                    'Membutuhkan tata kelola administrasi kepemiluan yang sangat presisi.'
+                ]
+            }
+        };
+
+        function selectElectoralSystem(key) {
+            const data = electoralSystemsData[key];
+            if (!data) return;
+
+            // Update styling tombol
+            document.querySelectorAll('.sys-btn').forEach(btn => {
+                btn.classList.remove('bg-navy-900', 'text-white', 'border-gold-500', 'shadow-md');
+                btn.classList.add('bg-white', 'text-navy-900', 'border-slate-200');
+                const badgeEl = btn.querySelector('span');
+                const descEl = btn.querySelector('p');
+                if (badgeEl) {
+                    badgeEl.classList.remove('text-gold-400');
+                    badgeEl.classList.add('text-slate-500');
+                }
+                if (descEl) {
+                    descEl.classList.remove('text-slate-300');
+                    descEl.classList.add('text-slate-500');
+                }
+            });
+
+            const activeBtn = document.getElementById(`sys-btn-${key}`);
+            activeBtn.classList.remove('bg-white', 'text-navy-900', 'border-slate-200');
+            activeBtn.classList.add('bg-navy-900', 'text-white', 'border-gold-500', 'shadow-md');
+            activeBtn.querySelector('span').classList.replace('text-slate-500', 'text-gold-400');
+            activeBtn.querySelector('p').classList.replace('text-slate-500', 'text-slate-300');
+
+            // Render konten detail
+            const detailCard = document.getElementById('system-detail-card');
+            detailCard.innerHTML = `
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-900 text-gold-400 text-xs font-bold mb-3">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <span>${data.badge}</span>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mb-3">${data.title}</h3>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">${data.summary}</p>
+
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-earth-asia text-navy-700 text-xl"></i>
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Contoh Negara Penerap</p>
+                            <p class="text-sm font-semibold text-navy-900">${data.examples}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                            <h4 class="font-bold text-emerald-900 text-sm flex items-center gap-2 mb-3">
+                                <i class="fa-solid fa-circle-plus text-emerald-600"></i>
+                                <span>Kelebihan Sistem</span>
+                            </h4>
+                            <ul class="space-y-2 text-xs sm:text-sm text-emerald-950">
+                                ${data.pros.map(item => `<li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span><span>${item}</span></li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-red-50/70 border border-red-200">
+                            <h4 class="font-bold text-red-900 text-sm flex items-center gap-2 mb-3">
+                                <i class="fa-solid fa-circle-minus text-crimson-600"></i>
+                                <span>Tantangan / Kekurangan</span>
+                            </h4>
+                            <ul class="space-y-2 text-xs sm:text-sm text-red-950">
+                                ${data.cons.map(item => `<li class="flex items-start gap-2"><span class="text-crimson-600 font-bold">•</span><span>${item}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Inisialisasi sistem pemilu default
+        selectElectoralSystem('proporsional-terbuka');
+
+        // 4. Simulator Surat Suara Interaktif
+        function handleBallotClick(action, event) {
+            if (event) event.stopPropagation();
+
+            const feedbackBox = document.getElementById('ballot-feedback');
+            const scenarios = {
+                'party1': {
+                    valid: true,
+                    title: 'SUARA SAH! (Coblos Tanda Gambar/Nomor Partai)',
+                    desc: 'Coblosan berada tepat di dalam kolom Partai Harapan Bangsa. Suara ini sah dan dihitung sebagai suara partai.'
+                },
+                'party2': {
+                    valid: true,
+                    title: 'SUARA SAH! (Coblos Tanda Gambar/Nomor Partai)',
+                    desc: 'Coblosan berada tepat di dalam kolom Partai Karya Nusantara. Suara ini sah dan masuk ke perolehan suara partai.'
+                },
+                'caleg1': {
+                    valid: true,
+                    title: 'SUARA SAH! (Coblos Nama Caleg: Alya Paramita)',
+                    desc: 'Coblosan satu kali pada baris nama/nomor caleg dalam kolom partai dinyatakan SAH untuk caleg dan partainya.'
+                },
+                'caleg2': {
+                    valid: true,
+                    title: 'SUARA SAH! (Coblos Nama Caleg: Budi Santoso)',
+                    desc: 'Coblosan satu kali pada baris nama caleg dinyatakan SAH untuk kandidat tersebut dan Partai Harapan Bangsa.'
+                },
+                'caleg3': {
+                    valid: true,
+                    title: 'SUARA SAH! (Coblos Nama Caleg: Citra Lestari)',
+                    desc: 'Coblosan satu kali pada baris nama caleg dinyatakan SAH untuk kandidat tersebut dan Partai Karya Nusantara.'
+                },
+                'caleg4': {
+                    valid: true,
+                    title: 'SUARA SAH! (Coblos Nama Caleg: Dimas Prakoso)',
+                    desc: 'Coblosan satu kali pada baris nama caleg dinyatakan SAH untuk kandidat tersebut dan Partai Karya Nusantara.'
+                },
+                'double_same_party': {
+                    valid: true,
+                    title: 'SUARA TETAP SAH! (Partai + 1 Caleg Se-Partai)',
+                    desc: 'Jika pemilih mencoblos logo partai sekaligus 1 nama caleg dari partai yang sama, suara dinyatakan SAH untuk caleg tersebut.'
+                },
+                'double_diff_party': {
+                    valid: false,
+                    title: 'SUARA TIDAK SAH! (Coblos Lebih dari 1 Partai)',
+                    desc: 'Mencoblos dua partai berbeda atau calon dari dua partai berbeda membuat surat suara dinyatakan TIDAK SAH.'
+                },
+                'outside': {
+                    valid: false,
+                    title: 'SUARA TIDAK SAH! (Coblos di Luar Kolom)',
+                    desc: 'Tanda coblos berada di luar garis kolom peserta pemilu sehingga tidak dapat diatribusikan ke peserta manapun.'
+                }
+            };
+
+            const res = scenarios[action];
+            if (!res) return;
+
+            if (res.valid) {
+                feedbackBox.className = 'p-5 rounded-2xl bg-emerald-950/90 border-2 border-emerald-500 transition-all';
+                feedbackBox.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500 text-navy-950 flex items-center justify-center flex-shrink-0 text-lg">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <p class="font-extrabold text-sm text-emerald-400">${res.title}</p>
+                            <p class="text-xs text-slate-200 mt-1 leading-relaxed">${res.desc}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                feedbackBox.className = 'p-5 rounded-2xl bg-red-950/90 border-2 border-crimson-600 transition-all';
+                feedbackBox.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-crimson-600 text-white flex items-center justify-center flex-shrink-0 text-lg">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div>
+                            <p class="font-extrabold text-sm text-red-400">${res.title}</p>
+                            <p class="text-xs text-slate-200 mt-1 leading-relaxed">${res.desc}</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function resetBallotSimulator() {
+            const feedbackBox = document.getElementById('ballot-feedback');
+            feedbackBox.className = 'p-5 rounded-2xl bg-navy-900 border border-navy-700 transition-all';
+            feedbackBox.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-navy-800 flex items-center justify-center text-gold-400">
+                        <i class="fa-solid fa-computer-mouse"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm text-white">Surat Suara Baru Siap!</p>
+                        <p class="text-xs text-slate-400">Silakan klik salah satu kolom partai atau nama caleg untuk mencoba lagi.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 5. Kuis Interaktif "Cek Pemahaman Pemilih"
+        const quizQuestions = [
+            {
+                question: "Apa arti asas 'Rahasia' dalam penyelenggaraan pemilihan umum yang Luber Jurdil?",
+                options: [
+                    "Jadwal hari pencoblosan dirahasiakan hingga hari pelaksanaan",
+                    "Pilihan pemilih dijamin tidak akan diketahui oleh pihak manapun dengan jalan apapun",
+                    "Hasil penghitungan suara di TPS hanya boleh diketahui petugas",
+                    "Nama-nama calon legislatif dirahasiakan sebelum pelantikan"
+                ],
+                correct: 1,
+                explanation: "Asas Rahasia menjamin bahwa dalam memberikan suaranya di bilik suara, pilihan pemilih tidak dapat diketahui oleh orang lain, sehingga pemilih terlindungi dari tekanan atau balasan pihak manapun."
+            },
+            {
+                question: "Dalam sistem Pemilu Proporsional Daftar Terbuka, bagaimana cara menentukan calon legislatif yang terpilih?",
+                options: [
+                    "Ditunjuk langsung oleh ketua umum partai politik setelah pemilu",
+                    "Berdasarkan nomor urut terkecil yang dicetak di surat suara",
+                    "Berdasarkan perolehan suara terbanyak masing-masing calon di dalam partai yang mendapat kursi",
+                    "Berdasarkan usia kandidat paling senior"
+                ],
+                correct: 2,
+                explanation: "Pada sistem proporsional daftar terbuka, kursi yang diraih partai diberikan kepada kandidat dari partai tersebut yang memperoleh suara terbanyak langsung dari pemilih."
+            },
+            {
+                question: "Apa yang terjadi jika seorang pemilih mencoblos tanda gambar partai sekaligus mencoblos 1 nama calon dari partai yang sama?",
+                options: [
+                    "Surat suara dinyatakan tidak sah karena mencoblos dua kali",
+                    "Suara dinyatakan sah dan dihitung untuk calon tersebut",
+                    "Surat suara dibatalkan dan pemilih diberi surat suara pengganti",
+                    "Suara diberikan kepada partai urutan berikutnya"
+                ],
+                correct: 1,
+                explanation: "Sesuai peraturan kepemiluan di Indonesia, coblosan pada kolom partai dan satu calon dari partai yang sama dinyatakan SAH dan dicatat sebagai perolehan suara calon tersebut."
+            },
+            {
+                question: "Dokumen apa yang wajib dicek sebelum hari pemungutan suara untuk memastikan warga negara memiliki hak pilih di TPS?",
+                options: [
+                    "Daftar Pemilih Tetap (DPT)",
+                    "Surat Keterangan Catatan Kepolisian (SKCK)",
+                    "Kartu Nomor Pokok Wajib Pajak (NPWP)",
+                    "Buku Tabungan Bank"
+                ],
+                correct: 0,
+                explanation: "Daftar Pemilih Tetap (DPT) adalah daftar warga negara yang telah memenuhi syarat sebagai pemilih dan ditetapkan oleh penyelenggara pemilu untuk menggunakan hak pilihnya di TPS."
+            },
+            {
+                question: "Apa yang dimaksud dengan 'Masa Tenang' sebelum hari pemungutan suara?",
+                options: [
+                    "Masa ketika TPS ditutup sementara selama jam makan siang",
+                    "Masa tidak boleh dilakukan aktivitas kampanye dalam bentuk apapun sebelum hari pemungutan suara",
+                    "Masa setelah penghitungan suara selesai di tingkat nasional",
+                    "Masa pendaftaran partai politik peserta pemilu"
+                ],
+                correct: 1,
+                explanation: "Masa tenang berlangsung selama 3 hari sebelum hari pemungutan suara. Pada masa ini peserta pemilu dilarang berkampanye agar pemilih dapat merenungkan pilihannya secara jernih."
+            },
+            {
+                question: "Mengapa praktik politik uang (money politics) berbahaya bagi kualitas demokrasi?",
+                options: [
+                    "Membuat proses penghitungan suara di TPS menjadi lebih lama",
+                    "Menyebabkan tinta pemilu cepat luntur dari jari pemilih",
+                    "Menggadaikan integritas pemimpin dan mendorong korupsi untuk mengembalikan modal kampanye",
+                    "Membuat surat suara harus dicetak ulang"
+                ],
+                correct: 2,
+                explanation: "Politik uang merusak kemurnian suara rakyat dan berisiko tinggi melahirkan pemimpin korup yang berupaya mengembalikan biaya politiknya melalui penyalahgunaan anggaran publik."
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let hasAnsweredCurrent = false;
+
+        function renderQuizQuestion() {
+            hasAnsweredCurrent = false;
+            const q = quizQuestions[currentQuizIndex];
+            
+            document.getElementById('quiz-progress-text').textContent = `Pertanyaan ${currentQuizIndex + 1} dari ${quizQuestions.length}`;
+            document.getElementById('quiz-score-badge').textContent = `Skor: ${quizScore}`;
+            const progressPercent = ((currentQuizIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+
+            document.getElementById('quiz-question').textContent = q.question;
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-opt-btn w-full text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-navy-700 hover:bg-slate-50 transition-all flex items-center gap-3.5 group';
+                btn.onclick = () => selectQuizOption(idx, btn);
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-navy-900 group-hover:text-gold-400 text-navy-900 font-extrabold text-sm flex items-center justify-center flex-shrink-0 transition-colors">${letters[idx]}</span>
+                    <span class="text-sm sm:text-base font-medium text-slate-800">${opt}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('quiz-explanation').classList.add('hidden');
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.classList.add('hidden');
+            nextBtn.classList.remove('inline-flex');
+        }
+
+        function selectQuizOption(selectedIdx, clickedBtn) {
+            if (hasAnsweredCurrent) return;
+            hasAnsweredCurrent = true;
+
+            const q = quizQuestions[currentQuizIndex];
+            const allBtns = document.querySelectorAll('.quiz-opt-btn');
+            const explanationBox = document.getElementById('quiz-explanation');
+
+            allBtns.forEach((btn, idx) => {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-navy-700', 'hover:bg-slate-50');
+                if (idx === q.correct) {
+                    btn.classList.remove('border-slate-200');
+                    btn.classList.add('border-emerald-500', 'bg-emerald-50');
+                    btn.querySelector('span:first-child').className = 'w-8 h-8 rounded-xl bg-emerald-600 text-white font-extrabold text-sm flex items-center justify-center flex-shrink-0';
+                } else if (idx === selectedIdx && selectedIdx !== q.correct) {
+                    btn.classList.remove('border-slate-200');
+                    btn.classList.add('border-crimson-600', 'bg-red-50');
+                    btn.querySelector('span:first-child').className = 'w-8 h-8 rounded-xl bg-crimson-600 text-white font-extrabold text-sm flex items-center justify-center flex-shrink-0';
+                }
+            });
+
+            if (selectedIdx === q.correct) {
+                quizScore++;
+                document.getElementById('quiz-score-badge').textContent = `Skor: ${quizScore}`;
+                explanationBox.className = 'mt-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-sm leading-relaxed';
+                explanationBox.innerHTML = `<p class="font-bold text-emerald-800 mb-1"><i class="fa-solid fa-circle-check mr-1.5"></i>Jawaban Tepat!</p><p>${q.explanation}</p>`;
+            } else {
+                explanationBox.className = 'mt-6 p-5 rounded-2xl bg-red-50 border border-red-200 text-red-950 text-sm leading-relaxed';
+                explanationBox.innerHTML = `<p class="font-bold text-crimson-700 mb-1"><i class="fa-solid fa-circle-xmark mr-1.5"></i>Kurang Tepat!</p><p>${q.explanation}</p>`;
+            }
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.innerHTML = currentQuizIndex === quizQuestions.length - 1
+                ? `<span>Lihat Hasil & Lencana</span><i class="fa-solid fa-trophy"></i>`
+                : `<span>Pertanyaan Berikutnya</span><i class="fa-solid fa-arrow-right"></i>`;
+            nextBtn.classList.remove('hidden');
+            nextBtn.classList.add('inline-flex');
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizQuestions.length) {
+                renderQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-header').classList.add('hidden');
+            document.getElementById('quiz-body').classList.add('hidden');
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.classList.remove('hidden');
+
+            document.getElementById('final-score-text').textContent = `${quizScore} / ${quizQuestions.length}`;
+
+            const badgeTitle = document.getElementById('badge-title');
+            const badgeSubtitle = document.getElementById('badge-subtitle');
+            const badgeIcon = document.getElementById('badge-icon');
+
+            if (quizScore >= 5) {
+                badgeTitle.textContent = 'Duta Pemilih Berdaulat';
+                badgeSubtitle.textContent = 'Luar biasa! Pemahamanmu tentang demokrasi, sistem pemilu, dan tata cara pemungutan suara sangat matang.';
+                badgeIcon.className = 'fa-solid fa-crown';
+            } else if (quizScore >= 3) {
+                badgeTitle.textContent = 'Pemilih Cerdas & Kritis';
+                badgeSubtitle.textContent = 'Bagus! Kamu sudah memahami dasar-dasar penting pemilu. Terus tingkatkan literasi demokrasimu.';
+                badgeIcon.className = 'fa-solid fa-award';
+            } else {
+                badgeTitle.textContent = 'Pemilih Pembelajar';
+                badgeSubtitle.textContent = 'Langkah awal yang baik! Pelajari kembali modul di atas lalu coba ulangi kuis untuk meraih skor maksimal.';
+                badgeIcon.className = 'fa-solid fa-book-open-reader';
+            }
+        }
+
+        function restartQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('copy-status').classList.add('hidden');
+            document.getElementById('quiz-header').classList.remove('hidden');
+            document.getElementById('quiz-body').classList.remove('hidden');
+            renderQuizQuestion();
+        }
+
+        function copyCertificateText() {
+            const title = document.getElementById('badge-title').textContent;
+            const shareText = `Saya baru saja menyelesaikan Kuis Edukasi Pemilu di SuaraCerdas dengan skor ${quizScore}/${quizQuestions.length} dan meraih lencana "${title}"! Mari jadi pemilih cerdas dan berdaulat.`;
+            
+            const tempInput = document.createElement('textarea');
+            tempInput.value = shareText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const statusEl = document.getElementById('copy-status');
+            statusEl.classList.remove('hidden');
+        }
+
+        // Inisialisasi kuis saat halaman dimuat
+        renderQuizQuestion();
+
+        // 6. Data & Logika Glosarium Pemilu
+        const glossaryItems = [
+            {
+                term: 'DPT (Daftar Pemilih Tetap)',
+                category: 'Pemilih & TPS',
+                definition: 'Daftar pemilih hasil pemutakhiran data yang telah ditetapkan oleh KPU sebagai dasar penentuan pemilih yang berhak memberikan suara di TPS.'
+            },
+            {
+                term: 'TPS (Tempat Pemungutan Suara)',
+                category: 'Pemilih & TPS',
+                definition: 'Tempat dilaksanakannya pemungutan dan penghitungan suara pada hari pemungutan suara pemilu.'
+            },
+            {
+                term: 'KPPS (Kelompok Penyelenggara Pemungutan Suara)',
+                category: 'Lembaga & Tahapan',
+                definition: 'Kelompok yang dibentuk oleh PPS untuk melaksanakan pemungutan dan penghitungan suara di TPS.'
+            },
+            {
+                term: 'Ambang Batas Parlemen (Parliamentary Threshold)',
+                category: 'Sistem & Aturan',
+                definition: 'Syarat minimal perolehan suara sah secara nasional yang harus dicapai partai politik untuk dapat diikutsertakan dalam penentuan perolehan kursi DPR.'
+            },
+            {
+                term: 'Dapil (Daerah Pemilihan)',
+                category: 'Sistem & Aturan',
+                definition: 'Batas wilayah atau kombinasi wilayah administrasi pemerintahan yang menjadi arena kompetisi peserta pemilu untuk memperebutkan sejumlah kursi perwakilan.'
+            },
+            {
+                term: 'Masa Tenang',
+                category: 'Lembaga & Tahapan',
+                definition: 'Masa selama 3 hari sebelum hari pemungutan suara di mana peserta pemilu dilarang melakukan aktivitas kampanye dalam bentuk apapun.'
+            },
+            {
+                term: 'DPTb (Daftar Pemilih Tambahan)',
+                category: 'Pemilih & TPS',
+                definition: 'Daftar pemilih yang telah terdaftar di DPT suatu TPS, namun karena keadaan tertentu (seperti tugas belajar, bekerja, atau sakit) mengurus pindah memilih ke TPS lain.'
+            },
+            {
+                term: 'KPU & Bawaslu',
+                category: 'Lembaga & Tahapan',
+                definition: 'KPU (Komisi Pemilihan Umum) bertugas menyelenggarakan tahapan pemilu, sedangkan Bawaslu (Badan Pengawas Pemilu) bertugas mengawasi dan menindak pelanggaran pemilu.'
+            },
+            {
+                term: 'Golput (Golongan Putih)',
+                category: 'Pemilih & TPS',
+                definition: 'Istilah bagi warga negara yang memiliki hak pilih namun memutuskan untuk tidak menggunakan hak suaranya dalam pemilihan umum.'
+            }
+        ];
+
+        let currentGlossaryCategory = 'Semua';
+
+        function setGlossaryCategory(category) {
+            currentGlossaryCategory = category;
+            document.querySelectorAll('.gloss-cat-btn').forEach(btn => {
+                if (btn.textContent.includes(category) || (category === 'Semua' && btn.textContent === 'Semua Istilah')) {
+                    btn.className = 'gloss-cat-btn px-3.5 py-1.5 rounded-lg bg-navy-900 text-white text-xs font-bold';
+                } else {
+                    btn.className = 'gloss-cat-btn px-3.5 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold';
+                }
+            });
+            filterGlossary();
+        }
+
+        function filterGlossary() {
+            const keyword = document.getElementById('glossary-search').value.toLowerCase().trim();
+            const grid = document.getElementById('glossary-grid');
+            const emptyState = document.getElementById('glossary-empty');
+
+            const filtered = glossaryItems.filter(item => {
+                const matchCat = currentGlossaryCategory === 'Semua' || item.category === currentGlossaryCategory;
+                const matchKeyword = item.term.toLowerCase().includes(keyword) || item.definition.toLowerCase().includes(keyword);
+                return matchCat && matchKeyword;
+            });
+
+            grid.innerHTML = '';
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                filtered.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-navy-700 transition-all flex flex-col justify-between';
+                    card.innerHTML = `
+                        <div>
+                            <span class="inline-block px-2.5 py-1 rounded-md bg-navy-900/10 text-navy-900 font-bold text-[10px] uppercase tracking-wider mb-3">${item.category}</span>
+                            <h3 class="text-lg font-extrabold text-navy-900 mb-2">${item.term}</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${item.definition}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Inisialisasi glosarium saat dimuat
+        filterGlossary();
+    </script>
+</body>
+</html>
